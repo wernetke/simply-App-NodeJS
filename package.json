@@ -1,0 +1,22 @@
+{
+  "name": "simply-app-nodejs",
+  "version": "1.0.0",
+  "description": "Create simply-App (Node project) ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wernetke/simply-App-NodeJS.git"
+  },
+  "keywords": [
+    "simply-App-NodeJS"
+  ],
+  "author": "wernetke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wernetke/simply-App-NodeJS/issues"
+  },
+  "homepage": "https://github.com/wernetke/simply-App-NodeJS#readme"
+}
