@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="simplyApp_Style.css">
+</head>
+
+<div id="centered">
+    <h1 display="hidden" id="errorMessage">{{errorMessage}}</h1>
+    <form method="post" action="/login/signSave">
+
+        <label for="username">User</label>
+        <input id="username" type="text">
+        <label for="password">Password</label>
+        <input id="password" type="text">
+        <input class="input_css_art" type="submit" value="Submit">
+
+    </form>
+</div>
