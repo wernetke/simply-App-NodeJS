@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/stylesheet/simplyApp_Style.css">
+</head>
+<div id="centered">
+    <h1 class="errorMessage">{{errorMessage}}</h1>
+    <h1 class="statusMessage">{{status}}</h1>
+
+    {{#if checkconnexion}}
+    <form method="post" action="/index">
+        <h1 id="labelStyle">{{seetrusLabel}}</h1>
+        <input type="hidden" id="groupId" name="groupId" value={{groupId}}>
+        <input class="buttonStyle" type="submit" value="NEXT">
+    </form>
+
+{{else}}
+    <h1 class="errorMessageConnect">Please connect you before.</h1>
+
+{{/if}}
+</div>
+</html>

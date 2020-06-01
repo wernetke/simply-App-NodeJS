@@ -4,26 +4,36 @@ const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const fs = require('fs');
+const config = require('./config.json');
 const indexRouter = require('./routes/index');
 const loginRouter = require ('./routes/login');
-
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 const app = express();
-
+//option session never expire (Approximately Friday, 31 Dec 9999 23:59:59 GMT)
 let options = {
     name: 'Cookie',
     secret: 'cookiesecret',
-    cookie: { maxAge: 60000 }
+    cookie: {expires: new Date(253402300000000)}
     //etc
 }
 app.use(session(options));
 app.use(checkConnexion);
 
-app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs', exphbs({defaultLayout: 'login', extname: '.hbs'}));
+
+app.engine('hbs', exphbs({
+        defaultLayout: 'layout',
+        extname: 'hbs',
+        // ...implement newly added insecure prototype access
+        handlebars: allowInsecurePrototypeAccess(Handlebars)
+    })
+);
 app.set('view engine', 'hbs');
+app.set('views', 'views');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -33,20 +43,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', loginRouter);
 app.use('/index', indexRouter);
+app.use('/index/next', indexRouter);
 app.use('/login', loginRouter);
 
+
 function checkConnexion(req,res,next){
-
-    if (typeof req.session.username === 'undefined') {
-
+    if (typeof req.session.userId === 'undefined') {
         app.locals.checkconnexion = false;
         next();
     }
     else{
-        console.log("not connected");
-        app.locals.hello = req.session.username;
         app.locals.checkconnexion = true;
-        app.locals.choucroute= true;
         next();
     }
 }
@@ -56,15 +63,26 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
 
-    // render the error page
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error');
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;

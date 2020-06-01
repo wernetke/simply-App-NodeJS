@@ -1,0 +1,55 @@
+html,body {
+    height:100%;
+    width:100%;
+    margin:0;
+}
+body , body {
+    display:flex;
+}
+#centered {
+    margin:auto;
+}
+.errorMessage{
+    color:red;
+}
+.statusMessage{
+    color:green;
+}
+h1{
+    text-align: center;
+    font-size: 26px;
+    font-family: Arial;
+    display: block;
+}
+h2{
+    text-align: center;
+    font-size: 18px;
+    font-family: Arial;
+    display: block;
+}
+label{
+    margin-top:5%;
+    text-align: center;
+    font-size: 18px;
+    font-family: Arial;
+    display: block;
+}
+input{
+    margin-top:5%;
+    display: block;
+    text-align: center;
+}
+.buttonStyle{
+    margin-top:5%;
+    text-align: center;
+    border: none;
+    border-color: darkgoldenrod;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 35px;
+    font-family: Arial;
+    background: darkgoldenrod;
+    display: flex;
+    justify-content: center;
+    cursor:pointer;
+}

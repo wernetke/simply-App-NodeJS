@@ -1,0 +1,5 @@
+{
+  "urlLogin" : "https://crtoea7d0a.execute-api.us-east-1.amazonaws.com/users/login?",
+  "urlNext" : "https://crtoea7d0a.execute-api.us-east-1.amazonaws.com/groups/",
+  "pathTextFile" : "credential.txt"
+}
