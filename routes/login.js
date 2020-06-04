@@ -8,7 +8,11 @@ const router = express.Router();
 
 //redirect index page
 router.get('/', function (req, res) {
-    res.render('login',{layout: false});
+    if (typeof req.session.userId === 'undefined') {
+     res.render('login',{layout: false});
+    }else{
+     res.redirect('/index')
+    } 
 });
 
 
