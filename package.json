@@ -34,7 +34,7 @@
     "fs": "0.0.1-security",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "officegen": "^0.6.4",
     "request": "^2.88.2"
   },
